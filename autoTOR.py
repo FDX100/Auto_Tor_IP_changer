@@ -15,7 +15,7 @@ ___  __   __        __      __                  __   ___  __      __          __
 
 ''')
 print("\033[1;40;31m http://facebook.com/ninja.hackerz.kurdish/\n")
-print("\033[1;40;31m *if you dont have tor . then you must install tor (sudo apt-get install tor)\n")
+print("\033[1;40;31m *if you dont have tor . then you must install tor (sudo apt-get install tor , sudo apt-get install privoxy)\n")
 os.system("service tor start")
 
 
