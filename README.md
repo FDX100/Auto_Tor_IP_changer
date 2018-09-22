@@ -3,7 +3,7 @@ change your Ip address automatically  This tool based on tor project
 
 how to install this tools :
 
-1 : install tor to your system  (sudo apt-get install tor privoxy , sudo apt-get install privoxy)
+1 : install tor to your system  (sudo apt-get install tor , sudo apt-get install privoxy)
 
 2: git clone https://github.com/FDX100/Auto_Tor_IP_changer.git
 
