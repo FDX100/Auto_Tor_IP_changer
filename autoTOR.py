@@ -25,6 +25,7 @@ try:
 except Exception:
     print('[+] python3 requests is not installed')
     os.system('pip3 install requests')
+    os.system('pip3 install requests[socks]')
     print('[!] python3 requests is installed ')
 try:
 
