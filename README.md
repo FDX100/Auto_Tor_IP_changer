@@ -1,19 +1,22 @@
-# Auto_Tor_IP_changer
+# Auto_Tor_IP_changer V 2.1
 change your Ip Address automatically  This tool based on tor project
+
 
 how to install this tools :
 
-1 : install tor to your system  (sudo apt-get install tor , sudo apt-get install privoxy) , and 
-pip install requests[socks] or pip3 install requests[socks]
+* : requirements:
 
-2: git clone https://github.com/FDX100/Auto_Tor_IP_changer.git
+  sudo apt-get install tor
+  pip3 install requests[socks]
+  or just run autoTor it will install everything
 
-3 : cd Auto_Tor_IP_changer
+1: git clone https://github.com/FDX100/Auto_Tor_IP_changer.git
 
-4 : python3 autoTOR3.py
+2 : cd Auto_Tor_IP_changer
 
-*[if you want to use python2 run python autoTor.py
-  or if you fan of old version type python autoTor_v1.py]
+3 : python3 install.py
+
+4 : interminal type ( aut ) any where you want
   
 5 : type time to change IP
 
