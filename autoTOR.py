@@ -67,13 +67,13 @@ os.system("service tor start")
 time.sleep(3)
 print("\033[1;32;40m change your  SOCKES to 127.0.0.1:9050 \n")
 os.system("service tor start")
-x = input("[+] time to change Ip in Sec [type=60] >> ")
-lin = input("[+] how many time do you want to change your ip [type=1000]for infinte ip change type [0] >>")
-if int(lin) ==int(0):
+x = int(input("[+] time to change Ip in Sec [type=60] >> "))
+lin = int(input("[+] how many time do you want to change your ip [type=1000]for infinte ip change type [0] >>"))
+if lin is not 0:
 
 	while True:
 		try:
-			time.sleep(int(x))
+			time.sleep(x)
 			change()
 		except KeyboardInterrupt:
 
@@ -81,6 +81,6 @@ if int(lin) ==int(0):
 		 	quit()
 
 else:
-	for i in range(int(lin)):
-		    time.sleep(int(x))
+	for i in range(lin):
+		    time.sleep(x)
 		    change()
