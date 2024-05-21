@@ -1,37 +1,44 @@
 # -*- coding: utf-8 -*-
 
-import time
 import os
 import subprocess
+import time
+
+import requests
+
+from utils import OS, detectOS, printLogo
 
 
-try:
-    check_pip3 = subprocess.check_output("dpkg -s python3-pip", shell=True)
-    if str("install ok installed") in str(check_pip3):
+def init():
+    isLinux = detectOS() == OS.LINUX
+
+    if not isLinux:
+        print("Please make sure: python3, pip3, requests, tor are installed")
+        return
+    try:
+        check_pip3 = subprocess.check_output("dpkg -s python3-pip", shell=True)
+        if str("install ok installed") in str(check_pip3):
+            pass
+    except subprocess.CalledProcessError:
+        print("[+] pip3 not installed")
+        subprocess.check_output("sudo apt update", shell=True)
+        subprocess.check_output("sudo apt install python3-pip -y", shell=True)
+        print("[!] pip3 installed successfully")
+    try:
         pass
-except subprocess.CalledProcessError:
-    print("[+] pip3 not installed")
-    subprocess.check_output("sudo apt update", shell=True)
-    subprocess.check_output("sudo apt install python3-pip -y", shell=True)
-    print("[!] pip3 installed succesfully")
-
-
-try:
-    import requests
-except Exception:
-    print("[+] python3 requests is not installed")
-    os.system("pip3 install requests")
-    os.system("pip3 install requests[socks]")
-    print("[!] python3 requests is installed ")
-try:
-    check_tor = subprocess.check_output("which tor", shell=True)
-except subprocess.CalledProcessError:
-    print("[+] tor is not installed !")
-    subprocess.check_output("sudo apt update", shell=True)
-    subprocess.check_output("sudo apt install tor -y", shell=True)
-    print("[!] tor is installed succesfully ")
-
-os.system("clear")
+    except Exception:
+        print("[+] python3 requests is not installed")
+        os.system("pip3 install requests")
+        os.system("pip3 install requests[socks]")
+        print("[!] python3 requests is installed ")
+    try:
+        check_tor = subprocess.check_output("which tor", shell=True)
+    except subprocess.CalledProcessError:
+        print("[+] tor is not installed !")
+        subprocess.check_output("sudo apt update", shell=True)
+        subprocess.check_output("sudo apt install tor -y", shell=True)
+        print("[!] tor is installed successfully ")
+    os.system("clear")
 
 
 def ma_ip():
@@ -48,38 +55,29 @@ def change():
     print("[+] Your IP has been Changed to : " + str(ma_ip()))
 
 
-print("""\033[1;32;40m \n
-                _          _______
-     /\        | |        |__   __|
-    /  \  _   _| |_ ___      | | ___  _ __
-   / /\ \| | | | __/ _ \     | |/ _ \| '__|
-  / ____ \ |_| | || (_) |    | | (_) | |
- /_/    \_\__,_|\__\___/     |_|\___/|_|
-                V 2.1
-from mrFD
-""")
-print("\033[1;40;31m http://facebook.com/ninja.hackerz.kurdish/\n")
+if __name__ == "__main__":
+    init()
+    printLogo()
 
-os.system("service tor start")
+    os.system("service tor start")
 
+    time.sleep(3)
+    print("\033[1;32;40m change your SOCKETS to 127.0.0.1:9050 \n")
+    os.system("service tor start")
+    x = input("[+] time to change Ip in Sec [type=60] >> ")
+    lin = input(
+        "[+] how many time do you want to change your ip [type=1000]for infinite ip change type [0] >>"
+    )
+    if int(lin) == int(0):
+        while True:
+            try:
+                time.sleep(int(x))
+                change()
+            except KeyboardInterrupt:
+                print("\nauto tor is closed ")
+                quit()
 
-time.sleep(3)
-print("\033[1;32;40m change your  SOCKES to 127.0.0.1:9050 \n")
-os.system("service tor start")
-x = input("[+] time to change Ip in Sec [type=60] >> ")
-lin = input(
-    "[+] how many time do you want to change your ip [type=1000]for infinte ip change type [0] >>"
-)
-if int(lin) == int(0):
-    while True:
-        try:
+    else:
+        for i in range(int(lin)):
             time.sleep(int(x))
             change()
-        except KeyboardInterrupt:
-            print("\nauto tor is closed ")
-            quit()
-
-else:
-    for i in range(int(lin)):
-        time.sleep(int(x))
-        change()
