@@ -39,7 +39,7 @@ except subprocess.CalledProcessError:
 
 os.system("clear")
 def ma_ip():
-    url='https://www.myexternalip.com/raw'
+    url='http://checkip.amazonaws.com'
     get_ip= requests.get(url,proxies=dict(http='socks5://127.0.0.1:9050',https='socks5://127.0.0.1:9050'))
     return get_ip.text
 
@@ -68,19 +68,24 @@ time.sleep(3)
 print("\033[1;32;40m change your  SOCKES to 127.0.0.1:9050 \n")
 os.system("service tor start")
 x = input("[+] time to change Ip in Sec [type=60] >> ")
-lin = input("[+] how many time do you want to change your ip [type=1000]for infinte ip change type [0] >>")
-if int(lin) ==int(0):
+lin = input("[+] How many times do you want to change your IP? enter to infinite IP change] >> ") or "0"
 
-	while True:
-		try:
-			time.sleep(int(x))
-			change()
-		except KeyboardInterrupt:
+try:
+    lin = int(lin)
 
-		 	print('\nauto tor is closed ')
-		 	quit()
+    if lin == 0:
+        print("Starting infinite IP change. Press Ctrl+C to stop.")
+        while True:
+            try:
+                time.sleep(int(x))  # Assuming 'x' is defined earlier in your code
+                change()  # Assuming 'change()' is defined elsewhere
+            except KeyboardInterrupt:
+                print('\nAuto IP changer is closed.')
+                break
+    else:
+        for _ in range(lin):
+            time.sleep(int(x))  # Assuming 'x' is defined earlier in your code
+            change()  # Assuming 'change()' is defined elsewhere
 
-else:
-	for i in range(int(lin)):
-		    time.sleep(int(x))
-		    change()
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
