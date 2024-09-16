@@ -7,15 +7,6 @@ import subprocess
 
 
 
-try:
-    check_pip3 = subprocess.check_output('dpkg -s python3-pip', shell=True)
-    if str('install ok installed') in str(check_pip3):
-        pass
-except subprocess.CalledProcessError:
-    print('[+] pip3 not installed')
-    subprocess.check_output('sudo apt update',shell=True)
-    subprocess.check_output('sudo apt install python3-pip -y', shell=True)
-    print('[!] pip3 installed succesfully')
 
 
 
