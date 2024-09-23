@@ -38,7 +38,7 @@ def install_requests():
 
 def check_tor():
     try:
-        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Tor", 0, winreg.KEY_READ | winreg.KEY_WOW64_64KEY)
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\\Tor Project", 0, winreg.KEY_READ | winreg.KEY_WOW64_64KEY)
         winreg.CloseKey(key)
         return True
     except WindowsError:
