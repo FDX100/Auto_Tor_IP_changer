@@ -4,6 +4,8 @@ import subprocess
 import sys
 import winreg
 import ctypes
+import requests
+from requests.exceptions import ConnectionError
 
 def is_admin():
     try:
@@ -46,12 +48,29 @@ def check_tor():
 
 def ma_ip():
     url = 'https://www.myexternalip.com/raw'
-    get_ip = requests.get(url, proxies=dict(http='socks5://127.0.0.1:9050', https='socks5://127.0.0.1:9050'))
-    return get_ip.text
+    proxies = {
+        'http': 'socks5://127.0.0.1:9050',
+        'https': 'socks5://127.0.0.1:9050'
+    }
+    try:
+        get_ip = requests.get(url, proxies=proxies)
+        return get_ip.text
+    except ConnectionError as e:
+        print(f"Error connecting to SOCKS5 proxy: {e}")
+        return "Unable to retrieve IP"
 
 def change():
-    subprocess.run(["net", "stop", "tor"], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    subprocess.run(["net", "start", "tor"], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Path to the Tor executable
+    tor_path = r"c:\\Tor Browser\\Browser\\TorBrowser\\Tor\\tor.exe"
+    
+    # Stop any existing Tor process
+    subprocess.run(["taskkill", "/F", "/IM", "tor.exe"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    
+    # Start Tor
+    subprocess.Popen([tor_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    time.sleep(10)
+    
     print(f'[+] Your IP has been Changed to: {ma_ip()}')
 
 if __name__ == "__main__":
