@@ -13,5 +13,8 @@ change your Ip Address automatically  This tool based on tor project.
 exec nohup invoke &
 exec nohup torsocks firefox 2600.securedrop.tor.onion
 ```
+
 ============
+
+With love from 2600 Hackers
 http://reddit.com/r/2600
