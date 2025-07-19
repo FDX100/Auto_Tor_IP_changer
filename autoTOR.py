@@ -58,7 +58,7 @@ os.system("service tor start")
 time.sleep(3)
 print("\033[1;32;40m change your  SOCKES to 127.0.0.1:9050 \n")
 os.system("service tor start")
-x = input("[+] time to change Ip in Sec [type=60] >> ")
+x = input("[+] time to change Ip in Sec [type=60] >> 3")
 lin = input("[+] How many times do you want to change your IP? enter to infinite IP change] >> ") or "0"
 
 try:
