@@ -10,7 +10,7 @@ how to install this tools :
   pip3 install requests[socks]
   or just run autoTor it will install everything
 
-1: git clone https://github.com/FDX100/Auto_Tor_IP_changer.git
+1: git clone https://github.com/FDX100/Auto_Tor_IP_changer.githttps://github.com/FDX100/Auto_Tor_IP_changer.git
 
 2 : cd Auto_Tor_IP_changer
 
